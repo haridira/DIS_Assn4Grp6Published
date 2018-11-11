@@ -168,5 +168,9 @@ namespace MVCTemplate.Controllers
             return new CompaniesEquities(companies, equities.Last(), dates, prices, volumes, avgprice, avgvol);
         }
 
+        public IActionResult Reflection()
+        {
+            return View();
+        }
     }
 }
