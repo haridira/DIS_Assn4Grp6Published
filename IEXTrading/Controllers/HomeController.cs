@@ -172,5 +172,10 @@ namespace MVCTemplate.Controllers
         {
             return View();
         }
+
+        public IActionResult TopStocks()
+        {
+            return View();
+        }
     }
 }
