@@ -176,7 +176,8 @@ namespace MVCTemplate.Controllers
         public IActionResult TopStocks(List<Equity> equities)
         {
             List<Company> companies = dbContext.Companies.ToList();
-            List<Company> topFive = new List<Company>();
+            List<Company> topFiveBuy = new List<Company>();
+            List<Company> topFiveSell = new List<Company>();
             Equity current = equities.First();
 
             if (equities.Count == 0)
@@ -184,11 +185,22 @@ namespace MVCTemplate.Controllers
                 return View();
 
             }
-            string sma30 = string.Join(",", equities.Select(e => e.close / 30));
-            string sma200 = string.Join(",", equities.Select(e => e.close / 200));
+            double sma30 = equities.Average(e => e.close / 30);
+            double sma200 = equities.Average(e => e.close / 200);
 
-            
-
+            for (var i = 0; i < equities.Count; i++)
+            {
+                if (sma30 > sma200)
+                {
+                    topFiveSell.ToList();
+                }
+                else if (sma30 < sma200)
+                {
+                    topFiveBuy.ToList();
+                }
+                topFiveBuy.OrderByDescending(e => e.name).Take(5);
+                topFiveSell.OrderByDescending(e => e.name).Take(5);
+            }
 
             return View();
         }
