@@ -173,17 +173,15 @@ namespace MVCTemplate.Controllers
             return View();
         }
 
-        public IActionResult TopStocks(List<Equity> listequity)
+        public IActionResult TopStocks(List<Equity> equities)
         {
-            List<Company> top = dbContext.Companies.ToList();
+            List<Company> companies = dbContext.Companies.ToList();
 
-            if (listequity.Count == 0)
+            if (equities.Count == 0)
             {
                 return View();
-            }
 
-            Equity buyStock = listequity.First();
-            Equity sellStock = listequity.Last();
+            }
 
 
 
