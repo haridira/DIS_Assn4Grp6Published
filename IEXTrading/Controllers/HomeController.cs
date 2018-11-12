@@ -176,13 +176,18 @@ namespace MVCTemplate.Controllers
         public IActionResult TopStocks(List<Equity> equities)
         {
             List<Company> companies = dbContext.Companies.ToList();
+            List<Company> topFive = new List<Company>();
+            Equity current = equities.First();
 
             if (equities.Count == 0)
             {
                 return View();
 
             }
+            string sma30 = string.Join(",", equities.Select(e => e.close / 30));
+            string sma200 = string.Join(",", equities.Select(e => e.close / 200));
 
+            
 
 
             return View();
