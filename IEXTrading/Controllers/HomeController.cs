@@ -179,7 +179,7 @@ namespace MVCTemplate.Controllers
 
             if (listequity.Count == 0)
             {
-                return View("No Stock List available. Please visit Symbols tab to save stocks for view.");
+                return View();
             }
 
             Equity buyStock = listequity.First();
