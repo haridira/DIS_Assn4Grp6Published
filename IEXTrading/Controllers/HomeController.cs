@@ -173,8 +173,20 @@ namespace MVCTemplate.Controllers
             return View();
         }
 
-        public IActionResult TopStocks()
+        public IActionResult TopStocks(List<Equity> listequity)
         {
+            List<Company> top = dbContext.Companies.ToList();
+
+            if (listequity.Count == 0)
+            {
+                return View("No Stock List available. Please visit Symbols tab to save stocks for view.");
+            }
+
+            Equity buyStock = listequity.First();
+            Equity sellStock = listequity.Last();
+
+
+
             return View();
         }
     }
