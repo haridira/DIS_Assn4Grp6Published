@@ -178,15 +178,15 @@ namespace MVCTemplate.Controllers
             List<Company> companies = dbContext.Companies.ToList();
             List<Company> topFiveBuy = new List<Company>();
             List<Company> topFiveSell = new List<Company>();
-            Equity current = equities.First();
+            //Equity current = equities.Last();
 
             if (equities.Count == 0)
             {
                 return View();
 
             }
-            double sma30 = equities.Average(e => e.close / 30);
-            double sma200 = equities.Average(e => e.close / 200);
+            double sma30 = equities.Average(e => e.close);
+            double sma200 = equities.Average(e => e.close);
 
             for (var i = 0; i < equities.Count; i++)
             {
@@ -198,9 +198,10 @@ namespace MVCTemplate.Controllers
                 {
                     topFiveBuy.ToList();
                 }
-                topFiveBuy.OrderByDescending(e => e.name).Take(5);
-                topFiveSell.OrderByDescending(e => e.name).Take(5);
             }
+
+            topFiveBuy.OrderByDescending(e => e.name).Take(5);
+            topFiveSell.OrderByDescending(e => e.name).Take(5);
 
             return View();
         }
